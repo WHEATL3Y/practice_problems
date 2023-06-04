@@ -8,13 +8,7 @@
 
 int willOverflow(unsigned long long n1, unsigned long long n2) {
 
-    int overflow = 0;
-
-    if (n2 > ULLONG_MAX - n1) {
-        overflow = 1;
-    }
-
-    return overflow;
+    return (n2 > ULLONG_MAX - n1);
 
 }
 
