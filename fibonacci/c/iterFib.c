@@ -34,5 +34,6 @@ unsigned int fib() {
 int main(void) {
     
     fib();
+    printf("Long: %ul\nLong Long: %ull\n", ULONG_MAX, ULLONG_MAX);
     return 0;
 }
