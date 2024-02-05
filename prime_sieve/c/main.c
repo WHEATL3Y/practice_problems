@@ -6,32 +6,42 @@
 #include <stdlib.h>
 #include <math.h>
 
-long double calcE(int);
-
-long double calcE(int limit) {
-
-    long double runningTotal = 0;
-    int factorial = 1;
-    int i = 0;
-
-    while (i < limit) {
-        
-        if (i <= 1) {
-            runningTotal += 1;
-        }
-        else {
-            runningTotal += 1.0 / (factorial *= i);
-        }
-        i++;
-    }
-
-    return runningTotal;
-}
-
 int main(void) {
 
-    // Tests    
-    printf("Testing: calcE(10): %.100Lf\n", calcE(10));
+    int calculateTo = 1000000;
+    int primesCount = 1;
+    int* primes;
+    int primesPos = 0;
+    int primeFlag = 0;
+
+    primes = (int *) malloc(100000 * sizeof(int));
+    primes[0] = 2;
+
+    for (int i = 3; i < calculateTo; i++) {
+        primeFlag = 1;
+        for (int j = 0; j <= primesPos; j++) {
+            int p = primes[j];
+            /* if (p * p > i) { */
+            if (p > sqrt(i)) {
+                break;
+            }
+            else if (i % p == 0) {
+                primeFlag = 0;
+                break;
+            }
+            else {
+                continue;
+            }
+        }
+        
+        if (primeFlag == 1) {
+            primesCount++;
+            primes[++primesPos] = i;
+        }
+
+    } 
+
+    printf("%d\n", primesCount);
 
     return EXIT_SUCCESS;
 }
